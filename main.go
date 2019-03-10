@@ -64,6 +64,16 @@ func main() {
 	mux.HandleFunc("/login", views.LoginHandler)
 	mux.HandleFunc("/logout", views.LogoutHandler)
 
+	mux.HandleFunc("/groups/add", views.GroupEditHandler)
+	mux.HandleFunc("/groups", views.GroupListHandler)
+
+	mux.HandleFunc("/topics/add", views.TopicEditHandler)
+	mux.HandleFunc("/topics/edit", views.TopicEditHandler)
+	mux.HandleFunc("/topics", views.TopicListHandler)
+
+	mux.HandleFunc("/comments/add", views.CommentEditHandler)
+	mux.HandleFunc("/comments/edit", views.CommentEditHandler)
+
 	addr := ":1984"
 	srv := http.Server{
 		Handler: mux,

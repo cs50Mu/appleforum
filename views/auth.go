@@ -5,7 +5,6 @@ import (
 	"appleforum/templates"
 	"database/sql"
 	"errors"
-	"fmt"
 	"log"
 	"math/rand"
 	"net/http"
@@ -27,19 +26,6 @@ func randStr(n int) string {
 	}
 	return string(b)
 }
-
-// IndexHandler handles index page
-var IndexHandler = SessionHandler(func(w http.ResponseWriter, r *http.Request, session *Session) {
-	//
-	userID := session.UserID
-	var userName string
-	err := db.QueryRow("SELECT name FROM users WHERE id = ?", userID).Scan(&userName)
-	if err != nil {
-		fmt.Fprint(w, "Hello, stranger!")
-		return
-	}
-	fmt.Fprintf(w, "Hello, %v", userName)
-})
 
 // LoginHandler handles login req
 var LoginHandler = SessionHandler(func(w http.ResponseWriter, r *http.Request, session *Session) {
